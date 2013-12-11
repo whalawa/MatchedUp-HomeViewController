@@ -13,9 +13,21 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    /* Setup Parse */
+    [Parse setApplicationId:@"GYacBYciv3ISqXOi66cbkoi7pRIzNn8zU6QgeBZ9"
+                  clientKey:@"Sr8CdWo6f37yAkKHYJkxK77Ndcj56U0SsBulBRa0"];
+    /* Initialize facebook singleton. There will be one and only 1 instance of PFFacebookUtils ever in our application. */
+    [PFFacebookUtils initializeFacebook];
+    
     return YES;
 }
-							
+
+/* Setups our Facebook login and sets up our PFFacebookUtilis session */
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [PFFacebookUtils handleOpenURL:url];
+}
+
 - (void)applicationWillResignActive:(UIApplication *)application
 {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
@@ -24,7 +36,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
